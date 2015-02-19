@@ -1,0 +1,75 @@
+﻿@model Practice.Models.Employement           
+@{
+    
+    ViewBag.Header = "Employee List View";  
+   
+}
+<script language="javascript" type="text/javascript">
+    function validateForm() {
+
+        document.forms[0].action = '@Url.Action("Updatestatusview", "Users")';
+        document.forms[0].submit();
+    }
+
+</script>
+<div class="form">
+    @using (Html.BeginForm("EmployeelistEdit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <table>
+            <tbody>
+                <tr>
+                    @Html.Hidden("ID", Model.Id)
+                    <th align="left">
+                        <b>Emp Name:</b>
+                    </th>
+                    <td>@Html.DisplayFor(model => model.Emp_Name)
+                    </td>
+                    <th align="left">
+                        <b>Emp Address: </b>
+                    </th>
+                    <td>
+                    
+                     @Html.DisplayFor(model => model.Emp_address)
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left">
+                        <b>Designation</b>
+                    </th>
+                    <td width="150px" valign="top">
+                        @Html.DisplayFor(model => model.Designation)
+                    </td>
+                    <th width="100px" valign="top" align="left">
+                        <b>Salary: </b>
+                    </th>
+                    <td width="150px" valign="top">
+                        @Html.DisplayFor(model => model.salary)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <div style="text-align: right">
+                            <button type="submit" class="formatted btnStyle_2">
+                                <span>Edit</span></button>
+                        </div>
+                    </td>
+                    <td colspan="2">
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+                
+                
+    }
+</div>

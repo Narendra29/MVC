@@ -1,0 +1,87 @@
+﻿@model List<Practice.Models.Employement>
+@{
+    ViewBag.Header = "Registration List";
+}
+
+<html>
+<body>
+<script language="javascript" type="text/javascript">
+
+    function confirmAndDelete(action, msgId) {       
+
+        if (confirm("This will permanently delete this record. Proceed?")) {
+            document.forms[0].action = action + "/" + msgId;
+            document.forms[0].submit();
+        }
+    }
+    </script>
+    <div>
+        <table id="mytable" cellpadding="0" cellspacing="0" border="0" >
+            <thead>
+                <tr>
+                    <th >
+                        Emp Name
+                    </th>
+                    <th >
+                        Emp Address
+                    </th>
+                    <th >
+                       Designation
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                     Active
+                    </th> 
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                    Delete
+                    </th>                                     
+                </tr>
+            </thead>
+            <tbody>
+          
+              @using (Html.BeginForm())
+                {                  
+
+                    foreach (var item in Model)
+                    {
+                        var userName = item.Emp_Name;
+                         
+                    <tr>
+                        <td>
+                                  
+                          @Html.ActionLink(userName, "Employeelistview", new { id = item.Id })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Emp_address)                               
+                        </td>
+                        <td>                        
+                            @Html.DisplayFor(modelItem => item.Designation)                         
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.salary)
+                        </td>
+                         <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>  
+                         <a href="#" onclick="confirmAndDelete('@Url.Action("EmployeeDelete", "Home")',@item.Id)">
+                         <img src="@Url.Content("~/Content/images/delete.jpg")" alt="" width="20" height="20" border="0" /></a>
+             
+                    </td>
+                                                
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
